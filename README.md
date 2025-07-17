@@ -7,6 +7,7 @@ Backend service for AI agents using ADK (Agent Development Kit). This service pr
 ### Prerequisites
 - Docker and Docker Compose
 - Google API Key
+- **Serverless MCP Server** running (HTTP) - [AI Agents MCP Server](http://github.com/ailtonacr/ai-agents-mcp-server)
 
 ### Quick Setup
 
@@ -15,6 +16,9 @@ Backend service for AI agents using ADK (Agent Development Kit). This service pr
    ```bash
    GOOGLE_GENAI_USE_VERTEXAI=FALSE
    GOOGLE_API_KEY=your_google_api_key
+   # MCP HTTP server settings
+   MCP_SERVER_HOST=your_mcp_server_host
+   MCP_SERVER_PORT=your_mcp_server_port
    ```
 
 2. **Run with Docker:**
@@ -35,19 +39,19 @@ make docker-stop
 - **ADK Web Interface**: Built-in web interface for agent interaction
 - **Google API Integration**: Connects to Google's AI services
 - **Agent Management**: Support for multiple AI agents (Bibble agent included)
-- **MCP Server**: Model Context Protocol server for advanced agent capabilities
+- **Serverless MCP Integration**: Communicates with external MCP server over HTTP for tool execution
 
 ## 🔧 Local Development
 
-If you prefer to run without Docker:
+If you prefer to run without Docker, ensure the serverless MCP HTTP server is running and then:
 
 ```bash
 # Install dependencies
 make setup
 
-# Configure environment variables in .env file
+# Configure .env as above
 
-# Run the ADK web interface (from app/src/agents directory)
+# Start ADK Web Interface
 cd src/agents
 adk web --host 0.0.0.0 --port 8000
 ```

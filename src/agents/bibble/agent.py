@@ -3,11 +3,11 @@ from .prompts import (
     BIBBLE_PROMPT, BIBBLE_DESCRIPTION, BIBBLE_MODEL,
     PLAY_MIND_PROMPT, PLAY_MIND_MODEL, PLAY_MIND_DESCRIPTION
 )
-from google.adk.tools.mcp_tool.mcp_toolset import MCPToolset, StdioServerParameters
-from pathlib import Path
+from google.adk.tools.mcp_tool.mcp_toolset import MCPToolset, StreamableHTTPServerParams
+import os
 
-MCP_SERVER_SCRIPT = str((Path(__file__).parent.parent.parent / "mcp_server" / "server.py").resolve())
-
+MCP_SERVER_URL = os.getenv("MCP_SERVER_URL", "http://localhost")
+MCP_SERVER_PORT = os.getenv("MCP_SERVER_PORT", "8001")
 
 playMind = Agent(
     model=PLAY_MIND_MODEL,
@@ -25,9 +25,8 @@ root_agent = Agent(
     sub_agents=[playMind],
     tools=[
         MCPToolset(
-            connection_params=StdioServerParameters(
-                command="python3",
-                args=[MCP_SERVER_SCRIPT],
+            connection_params=StreamableHTTPServerParams(
+                url=f'{MCP_SERVER_URL}:{MCP_SERVER_PORT}/mcp'
             )
         )
     ],
