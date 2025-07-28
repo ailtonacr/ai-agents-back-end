@@ -1,4 +1,4 @@
-google-adk~=1.2.1
+google-adk~=1.7.0
 black~=25.1.0
 pytest~=8.4.0
 pytest-cov~=6.2.1
