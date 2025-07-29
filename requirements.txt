@@ -1,4 +1,7 @@
-google-adk~=1.7.0
 black~=25.1.0
 pytest~=8.4.0
 pytest-cov~=6.2.1
+agno~=1.7.6
+fastapi[standard]
+google-genai~=1.27.0
+mcp~=1.12.2

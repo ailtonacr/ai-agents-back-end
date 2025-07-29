@@ -2,7 +2,7 @@ services:
   agent:
     build:
       context: .
-    container_name: adk_agent
+    container_name: agent_back_end
     restart: unless-stopped
     environment:
       - GOOGLE_API_KEY=${GOOGLE_API_KEY}
@@ -12,4 +12,4 @@ services:
     volumes:
       - ./src:/app/src
     ports:
-      - "8000:8000"
+      - "7777:7777"
